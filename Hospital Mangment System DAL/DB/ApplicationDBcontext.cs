@@ -87,18 +87,18 @@ namespace Hospital_Mangment_System_DAL.DB
         }
 
             public override int SaveChanges()
-        {
-            var entries = ChangeTracker.Entries()
+            {
+             var entries = ChangeTracker.Entries()
                 .Where(e => e.Entity is ApplicationUser && e.State == EntityState.Deleted);
 
-            foreach (var entry in entries)
-            {
+                foreach (var entry in entries)
+                {
                 entry.State = EntityState.Modified;
                 ((ApplicationUser)entry.Entity).IsDeleted = true;
-            }
+                }
 
             return base.SaveChanges();
-        }
+            }
     }
 
 
